@@ -1,4 +1,4 @@
-criterion_name,criterion_type,weight
-experience,gain,5
-qualities,gain,2
-expectation,cost,3
+criterion_name,criterion_type,alpha,beta,weight
+experience,gain,0,10,5
+qualities,gain,0,10,2
+expectation,cost,,0,3
