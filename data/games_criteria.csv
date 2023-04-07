@@ -1,5 +1,5 @@
 criterion_name,criterion_type,alpha,beta,weight
-price,cost,0,,7
+price,cost,,0,7
 positive_reviews_percentage,gain,0,100,10
 number_of_reviews,gain,0,,5
 system_requirements,cost,10,1,6
