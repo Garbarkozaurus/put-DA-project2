@@ -1,0 +1,10 @@
+criterion_name,criterion_type,weight
+price,cost,7
+positive_reviews_percentage,gain,10
+number_of_reviews,gain,5
+system_requirements,cost,6
+content_volume,gain,6
+gameplay,gain,8
+audio,gain,3
+graphics,gain,4
+wishlist_position,cost,6
