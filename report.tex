@@ -1,0 +1,80 @@
+\documentclass{article}
+\author{Marcin Gólski \and Piotr Kaszubski}
+\title{Decision Analysis report 2 - UTA}
+\usepackage{array}
+\usepackage{geometry}
+\geometry{lmargin=35pt, rmargin=35pt}
+\usepackage{multicol}
+\begin{document}
+\maketitle
+
+
+\section{Data set}
+The data set is contains preference information about 15 video games, collected mostly from Steam  and DM's judgements. The goal is to recommend what the DM's resources of time and money should be dedicated towards.
+
+\subsection{Criteria}
+    There are 9 criteria in the data set. All of them are discrete.
+
+    \verb|price|: full cost of the game, taken from its Steam store page (given in PLN, for Polish market). Cost type. Minimum value in the data set: 0 (for "Path of Exile", a free to play game), maximum value: 249.00 ("ELDEN RING")
+
+    \verb|positive_reviews_percentage|: gain, 0-100 scale
+
+    \verb|number_of_reviews|: gain, 1085 ("Nebuchadnezzar") to 880572 ("Terraria")
+
+    \verb|system_requirements|: cost, 1-10 scale
+
+    \verb|content_volume|, \verb|gameplay|, \verb|audio|, \verb|graphics|: all gain, 1-10 scale
+
+    \verb|position_on_wishlist|: cost, 0 (game already owned) - n (maximum value in the data set: 8, "Gears Tactics")
+
+\section{Discussing consistent model results}
+
+The solver was able to quickly determine a consistent model. The provided pairwise comparisons seem to be easy to realise -
+only 3 out of 9 marginal value functions make significant use of the 2 available breakpoints. The remaining 6 use only one of them to differentiate between the top performances on the corresponding gain-type criteria. This might be due to the sparseness of the data in some ranges of criteria values - e.g. there is only one alternative that would fall into the "worst bucket" (has a value between 1 and 4) in the \verb|gameplay| category.
+
+\section{Comparing UTA and PROMETHEE II rankings}
+
+Both rankings produced no indifferences.
+The resulting Kendall's tau was $ \tau \approx 0.657 $.
+This is below the threshold of 0.75 typically considered to be sufficient to accept two rankings as similar. Some highlights of comparing the rankings example-by-example:
+
+\begin{itemize}
+    \item "Terraria" ranks first in both
+    \item "Gears Tactics" ranks last (15th) in both
+    \item "Divinity: Original Sin 2" jumped all the way from 9th  in PROMETHEE II to 3rd in UTA
+    \item "Superliminal", "Rogue Legacy 2", "Nebuchadnezzar", "Last Epoch", and "Gears Tactics" are among the bottom 5 in both rankings
+    \item "Geometry Dash", and "Path of Exile" are consistently ranked near the top
+\end{itemize}
+
+Top 5:
+\begin{center}
+\begin{tabular}{ c|m{8em}|m{12em} }
+    Position & PROMETHEE II & UTA \\
+    \hline
+    \hline
+    1. & Terraria & Terraria \\
+    2. & Portal 2 & Path of Exile \\
+    3. & Geometry Dash & Divinity: Original Sin 2 \\
+    4. & Path of Exile & Geometry Dash \\
+    5. & Bloons TD 6 & Slay the Spire \\
+\end{tabular}
+\end{center}
+
+Bottom 5:
+\begin{center}
+\begin{tabular}{ c|m{8em}|m{8em} }
+    Position & PROMETHEE II & UTA \\
+    \hline
+    \hline
+    11. & Superliminal & Last Epoch  \\
+    12. & Rogue Legacy 2 & Nebuchadnezzar  \\
+    13. & Nebuchadnezzar & Rogue Legacy 2 \\
+    14. & Last Epoch & Superliminal \\
+    15. & Gears Tactics & Gears Tactics \\
+
+\end{tabular}
+\end{center}
+
+Other than radically changing criteria weights (which was not done to preserve continuity with the previous project), the thing that seems to have the greatest impact on the UTA ranking are the provided pairwise comparisons, especially if they include one alternative particularly often, or go against the ranking that would be obtained without the given comparison.
+
+\end{document}
